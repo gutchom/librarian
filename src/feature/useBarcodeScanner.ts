@@ -1,6 +1,18 @@
 import type { MouseEventHandler } from 'react';
 import { useCallback, useRef } from 'react';
 
+// const isBoundary = (prev: 0|1, curr: 0|1): boolean => prev !== curr;
+
+/*
+function calcWidths(widths: number[], index: number, array: (0|1)[]): number[] {
+  if (index < array.length - 1) {
+    if (isBoundary(array[index], array[index + 1])) {}
+  } else {`
+
+  }
+}
+*/
+
 export default function useBarcodeScanner(width: number, height: number) {
   const scanner = useRef<HTMLCanvasElement>(null);
   const preview = useRef<HTMLCanvasElement>(null);
@@ -41,6 +53,7 @@ export default function useBarcodeScanner(width: number, height: number) {
           }
           const threshold = (Math.max(...pixels) - Math.min(...pixels)) / 2;
           const binaries = pixels.map((v) => v > threshold ? 1 : 0); // white is 1, black is 0.
+
 
           for (let i = 0; i < binaries.length; i++) {
             const color = binaries[i]*255;
